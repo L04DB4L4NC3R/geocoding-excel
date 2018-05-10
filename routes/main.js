@@ -34,7 +34,7 @@ router.post("/", async (req,res)=>{
 
                     obj.save()
                     .then((o)=>{
-                        req.session.name = req.user.name;
+                        req.session.name = o.name;
                         res.render("main",{name:req.session.name});
                     })
                     .catch(console.log);
@@ -52,7 +52,7 @@ router.post("/", async (req,res)=>{
                 .then((bool)=>{
                     if(user && bool )
                         {
-                            req.session.name = req.user.name;
+                            req.session.name = user.name;
                             res.render("main",{name:req.session.name});
                         }
                     else
