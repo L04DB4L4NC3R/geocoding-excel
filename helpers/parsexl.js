@@ -1,7 +1,7 @@
 const parsexl = require("convert-excel-to-json");
 
 var result = parsexl({
-    sourceFile:__dirname+"/example.xlsx",
+    sourceFile:__dirname.split("helpers")[0]+"uploads/example.xlsx",
     columnToKey:{
         A:'Equipment',
         B:'OEM',

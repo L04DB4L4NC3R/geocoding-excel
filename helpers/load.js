@@ -5,23 +5,17 @@ async function func(arr,info){
         var objs = info[items];
         for(obj of objs){
             var newobj = await DM.create(obj);
-            console.log(newobj);
         }
     }
 }
 
 
 
-DM.findOne({})
-.then((d)=>{
-    if(!d){
-        var info = require("./parsexl");
-        var keys = Object.keys(info);
+module.exports = ()=>{
 
-        func(keys,info);
+    var info = require("./parsexl");
+    var keys = Object.keys(info);
 
-    }
-    else {
-        console.log("Database is already populated");
-    }
-}).catch(console.log);
+    func(keys,info);
+
+}

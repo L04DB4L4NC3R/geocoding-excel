@@ -23,22 +23,4 @@ router.get("/logout",(req,res)=>{
 });
 
 
-//facebook oauth
-
-router.get('/facebook',passport.authenticate('facebook',{
-    scope: ['publish_actions']
-}));
-
-
-router.get('/facebook/redirect',passport.authenticate('facebook'),(req,res)=>{
-    if(req.user){
-        req.session.name = req.user.name;
-        res.render("main",{name:req.session.name});
-    }
-    else
-        res.send("error in oauth.js");
-});
-
-
-
 module.exports = router;

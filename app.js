@@ -4,9 +4,9 @@ const morgan = require("morgan");
 const session = require("express-session");
 const secret = require("./secret");
 const passport = require("passport");
+
 require("./db/connect");
 require("./helpers/oauth_config");
-require("./helpers/load");
 
 const app = express();
 
@@ -26,6 +26,7 @@ app.use(session({
 //routes
 app.use(require("./routes/main"));
 app.use("/auth",require("./routes/oauth"));
+app.use(require("./routes/upload"));
 
 
 app.listen(process.env.PORT || 3000,()=>console.log("Listening on port 3000"));

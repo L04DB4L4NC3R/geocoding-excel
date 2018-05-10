@@ -24,7 +24,7 @@ passport.use(
         callbackURL:secret.gcallbackURL
     }, function(accessToken,refreshToken,profile,done){
 
-            users.findOne({name:profile.id})
+            users.findOne({name:profile.displayName})
             .then((user)=>{
                 if(user){
                     console.log("user exists");
@@ -50,35 +50,3 @@ passport.use(
 
     })
 )
-
-
-
-
-//facebook oauth
-passport.use(new FacebookStrategy({
-    clientID:secret.fclientID,
-    clientSecret:secret.fclientSecret,
-    callbackURL:secret.fcallbackURL
-},function(accessToken,refreshToken,profile,done){
-
-    users.findOne({name:profile.id})
-    .then((u)=>{
-        if(u){
-            console.log("user exists");
-            done(null,u);
-        }
-        else{
-            hash(profile.id)
-            .then((p)=>{
-                new users({
-                    name:profile.displayName,
-                    passwd:p
-                }).save().then((us)=>{
-                    console.log("created new user");
-                    done(null,us);
-                }).catch(console.log);
-            }).catch(console.log);
-        }
-    }).catch(console.log);
-
-}));

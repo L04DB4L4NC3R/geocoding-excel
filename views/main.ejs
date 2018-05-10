@@ -29,6 +29,10 @@
 
     <input type="text" name="address" id="address" placeholder="Enter the address" required>
     <button id="btn">submit</button>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" id="file">
+        <button type="submit" id="file_btn">upload file</button>
+    </form>
     <div id="map"></div>
 
      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
