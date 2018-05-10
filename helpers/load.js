@@ -1,10 +1,23 @@
 const DM = require("../db/model").data;
 
+async function func(arr,info){
+    for(items of arr){
+        var objs = info[items];
+        for(obj of objs){
+            console.log(obj);
+        }
+    }
+}
+
+
+
 DM.findOne({})
 .then((d)=>{
-    //console.log(d);
     if(!d){
         var info = require("./parsexl");
-        console.log(info.Sheet1.length);
+        var keys = Object.keys(info);
+
+        func(keys,info);
+
     }
 }).catch(console.log);
