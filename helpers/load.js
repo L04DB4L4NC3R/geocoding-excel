@@ -4,7 +4,8 @@ async function func(arr,info){
     for(items of arr){
         var objs = info[items];
         for(obj of objs){
-            console.log(obj);
+            var newobj = await DM.create(obj);
+            console.log(newobj);
         }
     }
 }
@@ -19,5 +20,8 @@ DM.findOne({})
 
         func(keys,info);
 
+    }
+    else {
+        console.log("Database is already populated");
     }
 }).catch(console.log);
