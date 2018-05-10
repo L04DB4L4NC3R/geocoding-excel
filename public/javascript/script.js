@@ -2,7 +2,7 @@ var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -34.397, lng: 150.644},
-    zoom: 8
+    zoom: 2
   });
 }
 
@@ -21,13 +21,6 @@ $("#btn").on("click",()=>{
     $.get(url,(data)=>{
         var res = data.results[0].geometry.location;
         console.log(res);
-
-
-
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: res,
-          zoom: 8
-        });
 
         var marker = new google.maps.Marker({
           position: res,
