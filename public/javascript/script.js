@@ -19,6 +19,8 @@ $("#btn").on("click",()=>{
 
     var url = "https://maps.googleapis.com/maps/api/geocode/json?address="+v+"&key="+"AIzaSyC4g5BpF0ntigP5d3LfulYDUUT0bxWvC54";
     $.get(url,(data)=>{
+        if(data.results[0].length<1)
+            alert("No results");
         var res = data.results[0].geometry.location;
         console.log(res);
 
@@ -30,4 +32,52 @@ $("#btn").on("click",()=>{
 
 
     });
+});
+
+
+
+
+
+function goget(data){
+    for(v of data){
+        var url = "https://maps.googleapis.com/maps/api/geocode/json?address="+v+"&key="+"AIzaSyC4g5BpF0ntigP5d3LfulYDUUT0bxWvC54";
+        $.get(url,(ata)=>{
+            var res = ata.results[0].geometry.location;
+            var marker = new google.maps.Marker({
+              position: res,
+              map: map,
+              title: 'Hello World!'
+            });
+        });
+    }
+}
+
+
+
+
+
+
+
+
+
+
+$("#file_btn").on("click",(e)=>{
+    e.preventDefault();
+    var form = $("#file_upload_form")[0];
+    var data = new FormData(form);
+
+    $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        processData: false,  // Important!
+        contentType: false,
+        cache: false,
+        url:"/upload",
+        data:data,
+        success:(data)=>{
+
+            goget(data);
+        }
+    });
+
 });

@@ -7,8 +7,8 @@
 
       <!-- CSS  -->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <link href="stylesheets/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-      <link href="stylesheets/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <link href="../../stylesheets/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <link href="../../stylesheets/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -29,7 +29,7 @@
 
     <input type="text" name="address" id="address" placeholder="Enter the address" required>
     <button id="btn">submit</button>
-    <form action="/upload" method="post" enctype="multipart/form-data">
+    <form action="/upload" method="post" enctype="multipart/form-data" id="file_upload_form">
         <input type="file" name="file" id="file">
         <button type="submit" id="file_btn">upload file</button>
     </form>

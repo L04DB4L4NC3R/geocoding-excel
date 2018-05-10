@@ -11,7 +11,7 @@ var upload = multer({dest:"./uploads"})
 router.post("/upload",upload.single("file"),async (req,res,next)=>{
     await fs.rename(req.file.path,"uploads/"+"example.xlsx");
     await load();
-    fs.unlink(__dirname.split("routes")[0]+"uploads/example.xlsx");
+    await fs.unlink(__dirname.split("routes")[0]+"uploads/example.xlsx");
 
     data.find({})
     .then((d)=>{
