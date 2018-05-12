@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const hash = require("../helpers/hash").hash;
 const compare = require("../helpers/hash").compare;
 const secret = require("../secret");
+const data = require("../db/model").data;
 
 router.get("/",(req,res)=>{
     res.render("index")
@@ -35,7 +36,15 @@ router.post("/", async (req,res)=>{
                     obj.save()
                     .then((o)=>{
                         req.session.name = o.name;
-                        res.render("main",{name:req.session.name});
+
+                        data.find({})
+                        .then((d)=>{
+                            var arr = [];
+                            for(i in d){
+                                arr[i] = d[i].Account;
+                            }
+                            res.render("main",{name:req.session.name,info:arr});
+                        }).catch(console.log);
                     })
                     .catch(console.log);
 
@@ -53,7 +62,14 @@ router.post("/", async (req,res)=>{
                     if(user && bool )
                         {
                             req.session.name = user.name;
-                            res.render("main",{name:req.session.name});
+                            data.find({})
+                            .then((d)=>{
+                                var arr = [];
+                                for(i in d){
+                                    arr[i] = d[i].Account;
+                                }
+                                res.render("main",{name:req.session.name,info:arr});
+                            }).catch(console.log);
                         }
                     else
                         res.json({message:"name or password entered is wrong, please try again"});
