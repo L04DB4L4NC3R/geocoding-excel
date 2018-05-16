@@ -37,7 +37,7 @@ router.post("/", async (req,res)=>{
                     .then((o)=>{
                         req.session.name = o.name;
 
-                            res.render("main",{name:req.session.name,info:d});
+                            res.render("main");
 
                     })
                     .catch(console.log);
@@ -57,7 +57,7 @@ router.post("/", async (req,res)=>{
                         {
                             req.session.name = user.name;
 
-                                res.render("main",{name:req.session.name,info:d});
+                                res.render("main");
 
                         }
                     else
