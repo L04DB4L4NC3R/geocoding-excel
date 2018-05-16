@@ -15,11 +15,13 @@ router.post("/upload",upload.single("file"),async (req,res,next)=>{
       fs.unlink(__dirname.split("routes")[0]+"uploads/example.xlsx",()=>{
         data.find({})
         .then((d)=>{
-            var arr = [];
+            var x={};
+            x.arr = [], x.other=[];
             for(i in d){
-                arr[i] = d[i].Account;
+                x.arr[i] = d[i].Address;
+                x.other[i] = d[i];
             }
-            res.send(arr);
+            res.send(x);
         }).catch(console.log);
       });
 

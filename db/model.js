@@ -12,7 +12,10 @@ const s = new mongoose.Schema({
     Serial:String,
     Account: String,
     MW: String,
-    Mode: String
+    Mode: String,
+    State:String,
+    Country:String,
+    Address:String
 });
 
 const model = mongoose.model("user",schema);

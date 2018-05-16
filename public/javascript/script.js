@@ -39,15 +39,30 @@ $("#btn").on("click",()=>{
 
 
 function goget(data){
-    for(v of data){
-        var url = "https://maps.googleapis.com/maps/api/geocode/json?address="+v+"&key="+"AIzaSyDYgWgepoCOXHvxoGW9n0z30nCRC9tHHvc";
+  //console.log(data.other);
+    for(v in data.arr){
+        var url = "https://maps.googleapis.com/maps/api/geocode/json?address="+data.arr[v]+"&key="+"AIzaSyDYgWgepoCOXHvxoGW9n0z30nCRC9tHHvc";
         $.get(url,(ata)=>{
             var res = ata.results[0].geometry.location;
-            var marker = new google.maps.Marker({
-              position: res,
-              map: map,
-              title: 'Hello World!'
-            });
+
+            if(data.other[v].OEM === "Siemens"){
+              var marker = new google.maps.Marker({
+                position: res,
+                map: map,
+                icon:"../../images/Stag.jpg",
+                title: 'Hello World!'
+              });
+            }
+
+            else{
+              var marker = new google.maps.Marker({
+                position: res,
+                map: map,
+                icon:"../../images/NSTag.jpg",
+                title: 'Hello World!'
+              });
+            }
+
         });
     }
 }

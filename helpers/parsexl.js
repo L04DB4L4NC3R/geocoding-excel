@@ -8,7 +8,10 @@ var result = parsexl({
         C:'Serial',
         D:'Account',
         E:'MW',
-        F:'Mode'
+        F:'Mode',
+        G:'State',
+        H:'Country',
+        I: 'Address'
   },
   header:{
       rows: 1
