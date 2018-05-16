@@ -17,7 +17,7 @@ $("#btn").on("click",()=>{
             v+="+";
     }
 
-    var url = "https://maps.googleapis.com/maps/api/geocode/json?address="+v+"&key="+"AIzaSyC4g5BpF0ntigP5d3LfulYDUUT0bxWvC54";
+    var url = "https://maps.googleapis.com/maps/api/geocode/json?address="+v+"&key="+"AIzaSyDYgWgepoCOXHvxoGW9n0z30nCRC9tHHvc";
     $.get(url,(data)=>{
         if(data.results[0].length<1)
             alert("No results");
@@ -40,7 +40,7 @@ $("#btn").on("click",()=>{
 
 function goget(data){
     for(v of data){
-        var url = "https://maps.googleapis.com/maps/api/geocode/json?address="+v+"&key="+"AIzaSyC4g5BpF0ntigP5d3LfulYDUUT0bxWvC54";
+        var url = "https://maps.googleapis.com/maps/api/geocode/json?address="+v+"&key="+"AIzaSyDYgWgepoCOXHvxoGW9n0z30nCRC9tHHvc";
         $.get(url,(ata)=>{
             var res = ata.results[0].geometry.location;
             var marker = new google.maps.Marker({

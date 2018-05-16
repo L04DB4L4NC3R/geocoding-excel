@@ -38,13 +38,13 @@
 
      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
      <script src="../../javascript/script.js"></script>
-     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA097zJ3ynm9KbAIkYOlse8Kp7tz4v9S9g&callback=initMap"
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYgWgepoCOXHvxoGW9n0z30nCRC9tHHvc&callback=initMap"
     async defer></script>
     <script>
         console.log("<%=info%>");
         for(v of "<%=info%>".split(",")){
             console.log(v);
-            var url = "https://maps.googleapis.com/maps/api/geocode/json?address="+v+"&key="+"AIzaSyC4g5BpF0ntigP5d3LfulYDUUT0bxWvC54";
+            var url = "https://maps.googleapis.com/maps/api/geocode/json?address="+v+"&key="+"AIzaSyDYgWgepoCOXHvxoGW9n0z30nCRC9tHHvc";
             $.get(url,(ata)=>{
                 //console.log(res);
                 var res = ata.results[0].geometry.location;
