@@ -27,7 +27,8 @@ $("#btn").on("click",()=>{
         var marker = new google.maps.Marker({
           position: res,
           map: map,
-          title: 'Hello World!'
+          title: 'Hello World!',
+
         });
 
 
@@ -47,8 +48,8 @@ function goget(data){
               var marker = new google.maps.Marker({
                 position: res,
                 map: map,
-                // icon: {
-                //         url: '../../images/Stag.jpg',
+                // icon:{
+                //         url: '../../images/Stag.png',
                 //         // This marker is 20 pixels wide by 32 pixels high.
                 //         size: new google.maps.Size(20, 32),
                 //         // The origin for this image is (0, 0).
@@ -56,8 +57,16 @@ function goget(data){
                 //         // The anchor for this image is the base of the flagpole at (0, 32).
                 //         anchor: new google.maps.Point(0, 32)
                 //       },
-                title: 'Hello World!'
+                title: 'Hello World!',
+                data:data.arr[v]
               });
+
+              marker.addListener('click', function() {
+                map.setZoom(8);
+                map.setCenter(marker.getPosition());
+                $("#desc").html("Equipment: "+data.arr[v].Equipment+", OEM: "+data.arr[v].OEM+",Account: "+data.arr[v].Account+",Mode: "+data.arr[v].Mode+",Address: "+data.arr[v].Address)
+              });
+
             }
 
             else{
@@ -65,7 +74,7 @@ function goget(data){
                 position: res,
                 map: map,
                 // icon:{
-                //         url: '../../images/NSTag.jpg',
+                //         url: '../../images/NSTag.png',
                 //         // This marker is 20 pixels wide by 32 pixels high.
                 //         size: new google.maps.Size(20, 32),
                 //         // The origin for this image is (0, 0).
@@ -73,19 +82,21 @@ function goget(data){
                 //         // The anchor for this image is the base of the flagpole at (0, 32).
                 //         anchor: new google.maps.Point(0, 32)
                 //       },
-                title: 'Hello World!'
+                title: 'Hello World!',
+                data:data.arr[v]
               });
+
+              marker.addListener('click', function() {
+                map.setZoom(8);
+                map.setCenter(marker.getPosition());
+                $("#desc").html("Equipment: "+data.arr[v].Equipment+", OEM: "+data.arr[v].OEM+",Account: "+data.arr[v].Account+",Mode: "+data.arr[v].Mode+",Address: "+data.arr[v].Address)
+              });
+
             }
 
         });
     }
 }
-
-
-
-
-
-
 
 
 
