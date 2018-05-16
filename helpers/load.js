@@ -5,7 +5,7 @@ async function func(arr,info){
         var objs = info[items];
         for(obj of objs){
 
-          var dd = await DM.findOne({Address:obj.Address
+          var dd = await DM.findOne({Address:obj.Address});
             if(!dd){
               await DM.create(obj);
             }

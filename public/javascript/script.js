@@ -40,13 +40,13 @@ $("#btn").on("click",()=>{
 
 
 function goget(data){
-  
+
     for(v in data.arr){
         var url = "https://maps.googleapis.com/maps/api/geocode/json?address="+data.arr[v].Address+"&key="+"AIzaSyDYgWgepoCOXHvxoGW9n0z30nCRC9tHHvc";
         $.get(url,(ata)=>{
             var res = ata.results[0].geometry.location;
+            alert(JSON.stringify(data.arr[v]) )
             if(data.arr[v].OEM === "Siemens"){
-              console.log("S");
               var marker = new google.maps.Marker({
                 position: res,
                 map: map,
