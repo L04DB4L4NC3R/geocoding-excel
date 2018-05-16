@@ -69,7 +69,7 @@
 
     </style>
 
-    <title>Welcome <%=name%></title>
+    <title>Welcome</title>
 </head>
 <body>
 
@@ -88,20 +88,27 @@
      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYgWgepoCOXHvxoGW9n0z30nCRC9tHHvc&callback=initMap"
     async defer></script>
     <script>
-        console.log("<%=info%>");
-        for(v of "<%=info%>".split(",")){
-            console.log(v);
-            var url = "https://maps.googleapis.com/maps/api/geocode/json?address="+v+"&key="+"AIzaSyDYgWgepoCOXHvxoGW9n0z30nCRC9tHHvc";
+
+        $.get("/getdata",(res)=>{
+          for(v of res){
+            var url = "https://maps.googleapis.com/maps/api/geocode/json?address="+v.Address +"&key="+"AIzaSyDYgWgepoCOXHvxoGW9n0z30nCRC9tHHvc";
             $.get(url,(ata)=>{
                 //console.log(res);
-                var res = ata.results[0].geometry.location;
+                var re = ata.results[0].geometry.location;
                 var marker = new google.maps.Marker({
-                  position: res,
+                  position: re,
                   map: map,
-                  title: 'Hello World!'
+                  title: 'Hello World!',
+                  data:v
+                });
+                marker.addListener('click', function() {
+                  map.setZoom(8);
+                  map.setCenter(marker.getPosition());
+                  $("#desc").html("Equipment: "+v.Equipment+", OEM: "+v.OEM+",Account: "+v.Account+",Mode: "+v.Mode+",Address: "+v.Address)
                 });
             });
-        }
+          }
+        });
     </script>
 
 

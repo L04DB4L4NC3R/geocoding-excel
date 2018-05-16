@@ -37,14 +37,8 @@ router.post("/", async (req,res)=>{
                     .then((o)=>{
                         req.session.name = o.name;
 
-                        data.find({})
-                        .then((d)=>{
-                            var arr = [];
-                            for(i in d){
-                                arr[i] = d[i].Account;
-                            }
-                            res.render("main",{name:req.session.name,info:arr});
-                        }).catch(console.log);
+                            res.render("main",{name:req.session.name,info:d});
+
                     })
                     .catch(console.log);
 
@@ -62,14 +56,9 @@ router.post("/", async (req,res)=>{
                     if(user && bool )
                         {
                             req.session.name = user.name;
-                            data.find({})
-                            .then((d)=>{
-                                var arr = [];
-                                for(i in d){
-                                    arr[i] = d[i].Account;
-                                }
-                                res.render("main",{name:req.session.name,info:arr});
-                            }).catch(console.log);
+
+                                res.render("main",{name:req.session.name,info:d});
+
                         }
                     else
                         res.json({message:"name or password entered is wrong, please try again"});
@@ -79,6 +68,11 @@ router.post("/", async (req,res)=>{
     });
 
 
-
+router.get("/getdata",(req,res)=>{
+  data.find({})
+  .then((d)=>{
+      res.send(d);
+  }).catch(console.log);
+});
 
 module.exports = router;
