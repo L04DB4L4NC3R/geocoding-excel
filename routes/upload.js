@@ -15,7 +15,6 @@ router.post("/upload",upload.single("file"),async (req,res,next)=>{
       fs.unlink(__dirname.split("routes")[0]+"uploads/example.xlsx",()=>{
         data.find({})
         .then((d)=>{
-          console.log(d);
             var x={};
             x.arr = [], x.other=[];
             for(i in d){
