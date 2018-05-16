@@ -40,32 +40,20 @@ $("#btn").on("click",()=>{
 
 
 function goget(data){
+  
     for(v in data.arr){
         var url = "https://maps.googleapis.com/maps/api/geocode/json?address="+data.arr[v].Address+"&key="+"AIzaSyDYgWgepoCOXHvxoGW9n0z30nCRC9tHHvc";
         $.get(url,(ata)=>{
             var res = ata.results[0].geometry.location;
             if(data.arr[v].OEM === "Siemens"){
+              console.log("S");
               var marker = new google.maps.Marker({
                 position: res,
                 map: map,
-                // icon:{
-                //         url: '../../images/Stag.png',
-                //         // This marker is 20 pixels wide by 32 pixels high.
-                //         size: new google.maps.Size(20, 32),
-                //         // The origin for this image is (0, 0).
-                //         origin: new google.maps.Point(0, 0),
-                //         // The anchor for this image is the base of the flagpole at (0, 32).
-                //         anchor: new google.maps.Point(0, 32)
-                //       },
                 title: 'Hello World!',
                 data:data.arr[v]
               });
 
-              marker.addListener('click', function() {
-                map.setZoom(8);
-                map.setCenter(marker.getPosition());
-                $("#desc").html("Equipment: "+data.arr[v].Equipment+", OEM: "+data.arr[v].OEM+",Account: "+data.arr[v].Account+",Mode: "+data.arr[v].Mode+",Address: "+data.arr[v].Address)
-              });
 
             }
 
@@ -73,26 +61,17 @@ function goget(data){
               var marker = new google.maps.Marker({
                 position: res,
                 map: map,
-                // icon:{
-                //         url: '../../images/NSTag.png',
-                //         // This marker is 20 pixels wide by 32 pixels high.
-                //         size: new google.maps.Size(20, 32),
-                //         // The origin for this image is (0, 0).
-                //         origin: new google.maps.Point(0, 0),
-                //         // The anchor for this image is the base of the flagpole at (0, 32).
-                //         anchor: new google.maps.Point(0, 32)
-                //       },
+                icon:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
                 title: 'Hello World!',
                 data:data.arr[v]
               });
 
-              marker.addListener('click', function() {
-                map.setZoom(8);
-                map.setCenter(marker.getPosition());
-                $("#desc").html("Equipment: "+data.arr[v].Equipment+", OEM: "+data.arr[v].OEM+",Account: "+data.arr[v].Account+",Mode: "+data.arr[v].Mode+",Address: "+data.arr[v].Address)
-              });
-
             }
+            marker.addListener('click', function() {
+              map.setZoom(8);
+              map.setCenter(marker.getPosition());
+              $("#desc").html("Equipment ID: "+data.arr[v].Equipment+", Serial no: "+data.arr[v].Serial+", Account: "+data.arr[v].Account+", Mode: "+data.arr[v].Mode+", Address: "+data.arr[v].Address+", MW: "+data.arr[v].MW)
+            });
 
         });
     }

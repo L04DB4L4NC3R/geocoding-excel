@@ -4,7 +4,15 @@ async function func(arr,info){
     for(items of arr){
         var objs = info[items];
         for(obj of objs){
-            var newobj = await DM.create(obj);
+
+          var dd = await DM.findOne({Address:obj.Address});
+
+            if(!dd){
+              await DM.create(obj);
+            }
+            else
+              console.log("Obj already exists");
+
         }
     }
 }

@@ -95,16 +95,27 @@
             $.get(url,(ata)=>{
                 //console.log(res);
                 var re = ata.results[0].geometry.location;
+              if(v.OEM==="Siemens"){
                 var marker = new google.maps.Marker({
                   position: re,
                   map: map,
                   title: 'Hello World!',
                   data:v
                 });
+              }
+              else{
+                var marker = new google.maps.Marker({
+                  position: re,
+                  map: map,
+                  title: 'Hello World!',
+                  data:v,
+                  icon:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+                });
+              }
                 marker.addListener('click', function() {
                   map.setZoom(8);
                   map.setCenter(marker.getPosition());
-                  $("#desc").html("Equipment: "+v.Equipment+", OEM: "+v.OEM+",Account: "+v.Account+",Mode: "+v.Mode+",Address: "+v.Address)
+                  $("#desc").html("Equipment ID: "+v.Equipment+", Serial: "+v.Serial+", Account: "+v.Account+", Mode: "+v.Mode+", Address: "+v.Address+", MW: "+v.MW)
                 });
             });
           }
