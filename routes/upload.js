@@ -18,8 +18,7 @@ router.post("/upload",upload.single("file"),async (req,res,next)=>{
             var x={};
             x.arr = [], x.other=[];
             for(i in d){
-                x.arr[i] = d[i].Address;
-                x.other[i] = d[i];
+                x.arr[i] = d[i];
             }
             res.send(x);
         }).catch(console.log);

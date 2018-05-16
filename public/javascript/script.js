@@ -39,17 +39,23 @@ $("#btn").on("click",()=>{
 
 
 function goget(data){
-  //console.log(data.other);
     for(v in data.arr){
-        var url = "https://maps.googleapis.com/maps/api/geocode/json?address="+data.arr[v]+"&key="+"AIzaSyDYgWgepoCOXHvxoGW9n0z30nCRC9tHHvc";
+        var url = "https://maps.googleapis.com/maps/api/geocode/json?address="+data.arr[v].Address+"&key="+"AIzaSyDYgWgepoCOXHvxoGW9n0z30nCRC9tHHvc";
         $.get(url,(ata)=>{
             var res = ata.results[0].geometry.location;
-
-            if(data.other[v].OEM === "Siemens"){
+            if(data.arr[v].OEM === "Siemens"){
               var marker = new google.maps.Marker({
                 position: res,
                 map: map,
-                icon:"../../images/Stag.jpg",
+                // icon: {
+                //         url: '../../images/Stag.jpg',
+                //         // This marker is 20 pixels wide by 32 pixels high.
+                //         size: new google.maps.Size(20, 32),
+                //         // The origin for this image is (0, 0).
+                //         origin: new google.maps.Point(0, 0),
+                //         // The anchor for this image is the base of the flagpole at (0, 32).
+                //         anchor: new google.maps.Point(0, 32)
+                //       },
                 title: 'Hello World!'
               });
             }
@@ -58,7 +64,15 @@ function goget(data){
               var marker = new google.maps.Marker({
                 position: res,
                 map: map,
-                icon:"../../images/NSTag.jpg",
+                // icon:{
+                //         url: '../../images/NSTag.jpg',
+                //         // This marker is 20 pixels wide by 32 pixels high.
+                //         size: new google.maps.Size(20, 32),
+                //         // The origin for this image is (0, 0).
+                //         origin: new google.maps.Point(0, 0),
+                //         // The anchor for this image is the base of the flagpole at (0, 32).
+                //         anchor: new google.maps.Point(0, 32)
+                //       },
                 title: 'Hello World!'
               });
             }
